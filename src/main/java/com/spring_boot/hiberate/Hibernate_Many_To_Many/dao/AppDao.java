@@ -11,4 +11,5 @@ public interface AppDao {
     public Course findCourseWithFetchStudent(int id);
     public void deleteStudentById(int id);
     public void deleteCourseById(int id);
+    public void assignCourseToStudent(int courseId,int studentId);
 }

@@ -63,4 +63,20 @@ public class AppDaoImpl implements AppDao{
         Course course=entityManager.find(Course.class,id);
         entityManager.remove(course);
     }
+
+    @Override
+    @Transactional
+    public void assignCourseToStudent(int courseId, int studentId) {
+        //finding course with courseId
+        Course course=entityManager.find(Course.class,courseId);
+        //finding student with studentId
+        Student student=entityManager.find(Student.class,studentId);
+
+        //adding course to student.
+        student.addCourse(course);
+
+        //updating database.
+        entityManager.merge(student);
+
+    }
 }
