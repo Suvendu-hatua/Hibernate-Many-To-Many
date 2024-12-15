@@ -20,10 +20,10 @@ public class Course {
     private float price;
 
     @Column(name = "no_enrollments")
-    private long enrolledStudents;
+    private long duration;
 
     //adding many-to-many relationship--->
-    @ManyToMany()
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
             name = "student-course",
             joinColumns = @JoinColumn(name = "course_id"),
@@ -34,9 +34,10 @@ public class Course {
     public Course() {
     }
 
-    public Course(String title, float price) {
+    public Course(String title, float price,long duration) {
         this.title = title;
         this.price = price;
+        this.duration=duration;
     }
 //Setter and getter methods()
 
@@ -56,12 +57,12 @@ public class Course {
         this.price = price;
     }
 
-    public long getEnrolledStudents() {
-        return enrolledStudents;
+    public long getDuration() {
+        return duration;
     }
 
-    public void setEnrolledStudents(long enrolledStudents) {
-        this.enrolledStudents = enrolledStudents;
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
     public List<Student> getStudents() {
@@ -87,7 +88,7 @@ public class Course {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", price=" + price +
-                ", enrolledStudents=" + enrolledStudents +
+                ", duration=" + duration +
                 '}';
     }
 }

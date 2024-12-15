@@ -23,7 +23,7 @@ public class Student {
     private String email;
 
     //Adding may-to-many relationship with Course.
-    @ManyToMany()
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
             name = "student-course",
             joinColumns = @JoinColumn(name = "student_id"),
@@ -76,7 +76,7 @@ public class Student {
 
     //Adding dedicated method to add course
     public  void addCourse(Course course){
-        if(course==null){
+        if(courses==null){
             courses=new ArrayList<>();
         }
         courses.add(course);
