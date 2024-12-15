@@ -19,7 +19,7 @@ public class Course {
     @Column(name = "price",nullable = false)
     private float price;
 
-    @Column(name = "no_enrollments")
+    @Column(name = "duration")
     private long duration;
 
     //adding many-to-many relationship--->
